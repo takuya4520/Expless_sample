@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Post App</title>
+</head>
+
+<body>
+  <h1>君のあだ名は</h1>
+  <form action="/posts" method="POST">
+    <input type="text" name="title" placeholder="あだ名" required>
+    <textarea name="content" placeholder="由来" required></textarea>
+    <button type="submit">これ</button>
+  </form>
+  <ul>
+    <% posts.forEach(post=> { %>
+      <li>
+        <strong>
+          <%= post.title %>
+        </strong>: <%= post.content %>
+          <!-- Delete button for each post -->
+          <form action="/posts/<%= post.id %>/?_method=DELETE" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Delete</button>
+          </form>
+      </li>
+      <% }); %>
+  </ul>
+</body>
+
+</html>
