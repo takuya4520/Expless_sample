@@ -3,30 +3,58 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Simple Post App</title>
+  <title>君のあだ名は</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>君のあだ名は</h1>
-  <form action="/posts" method="POST">
-    <input type="text" name="title" placeholder="あだ名" required>
-    <textarea name="content" placeholder="由来" required></textarea>
-    <button type="submit">これ</button>
-  </form>
-  <ul>
-    <% posts.forEach(post=> { %>
-      <li>
-        <strong>
-          <%= post.title %>
-        </strong>: <%= post.content %>
-          <!-- Delete button for each post -->
-          <form action="/posts/<%= post.id %>/?_method=DELETE" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Delete</button>
-          </form>
-      </li>
-      <% }); %>
-  </ul>
+  <div class="container">
+    <nav class="navbar navbar-expand-xl navbar-light bg-body-tertiary">
+      <div class="container-fluid text-center">
+        <h1 class="navbar-brand navbar-title text-center">君のあだ名は ~今は呼ばれない名~</h1>
+      </div>
+    </nav>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form action="/posts" method="POST">
+          <div class="form-group">
+            <label class="control-label">あだ名</label>
+            <input class="form-control" type="text" name="title" placeholder="あだ名" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label">由来・思い出</label>
+            <textarea class="form-control" name="content" placeholder="由来" required></textarea>
+          </div>
+          <button class="btn btn-dark" type="submit">投稿</button>
+        </form>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <ul class="list-group">
+        <% posts.forEach(post=> { %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>
+                <%= post.title %>
+              </strong>: <%= post.content %>
+            </div>
+            <!-- Delete button for each post -->
+            <form action="/posts/<%= post.id %>/?_method=DELETE" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+            </form>
+          </li>
+          <% }); %>
+      </ul>
+    </div>
+  </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+  integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 </html>
