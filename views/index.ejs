@@ -58,7 +58,8 @@
             <!-- Delete button for each post -->
             <form action="/posts/<%= post.id %>/?_method=DELETE" method="POST">
               <input type="hidden" name="_method" value="DELETE">
-              <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+              <button type="submit" class="btn btn-dark btn-sm"
+                onclick="return confirm('本当に削除しますか？　削除されると元に戻りません。');">Delete</button>
             </form>
           </li>
           <% }); %>
