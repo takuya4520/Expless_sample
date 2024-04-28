@@ -13,13 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // 追加：DELETEを扱うため？
 app.use(methodOverride('_method'));
-
+app.use("/public", express.static("public"));
 app.set('view engine', 'ejs');
 
 // ホームページのルーティング
 app.get('/', async (req, res) => {
   const posts = await prisma.post.findMany();
-  res.render('index', { posts: posts });
+
+  const imageUrl = "/public/img/icon.webp";
+  res.render('index', { posts: posts, imageUrl: imageUrl });
 });
 
 // 投稿の作成ルーティング
