@@ -18,7 +18,11 @@ app.set('view engine', 'ejs');
 
 // ホームページのルーティング
 app.get('/', async (req, res) => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      id: 'desc' // IDに基づいて降順にソート
+    }
+  });
 
   const imageUrl = "/public/img/icon.webp";
   res.render('index', { posts: posts, imageUrl: imageUrl });
