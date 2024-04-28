@@ -40,16 +40,16 @@ app.post('/posts', async (req, res) => {
   res.redirect('/');
 });
 
-// 投稿の削除ルーティング
-app.delete('/posts/:id', async (req, res) => {
-  const { id } = req.params;
-  await prisma.post.delete({
-    where: {
-      id: parseInt(id)
-    }
-  });
-  res.redirect('/');
-});
+// // 投稿の削除ルーティング
+// app.delete('/posts/:id', async (req, res) => {
+//   const { id } = req.params;
+//   await prisma.post.delete({
+//     where: {
+//       id: parseInt(id)
+//     }
+//   });
+//   res.redirect('/');
+// });
 
 app.listen(PORT, () => {
   console.log('Server is running on port 4000');
